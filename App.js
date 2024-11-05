@@ -38,7 +38,7 @@ const API_KEY = 'live_5fe3246969ef434c65847a2e6109cf';
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.homeContainer}>
-      <Image source={require('./assets/fundos.png')} style={styles.backgroundImage} />
+      <Image source={require('./assets/fundo.png')} style={styles.backgroundImage} />
       <Text style={styles.title}>Bem-vindo ao App</Text>
       <View style={styles.buttonContainer}>
         <Button
