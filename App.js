@@ -31,27 +31,28 @@ export const fetchBasquete = async () => {
 
 const Stack = createStackNavigator();
 
-const API_URL = 'https://api.api-futebol.com.br/v1/campeonatos/10/rodadas/';
-const API_KEY = 'live_5fe3246969ef434c65847a2e6109cf';
+
 
 // Primeira Tela (Tela com fundo com imagem)
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.homeContainer}>
-      <Image source={require('./assets/fundo.png')} style={styles.backgroundImage} />
-      <Text style={styles.title}>Bem-vindo ao App</Text>
+      <Image source={require('./assets/bg-app.jpg')} style={styles.backgroundImage} />
+      <Text style={styles.title}>Bem-vindo ao App Esportes</Text>
       <View style={styles.buttonContainer}>
         <Button
           title="API Futebol"
           onPress={() => navigation.navigate('AppScreen')}
-          color="#A9A9A9" // Cor cinza para o botão
+          color="#000" // Cor cinza para o botão
+          backgroundColor="#fff"
         />
       </View>
       <View style={styles.buttonContainer}>
         <Button
           title="API Basketball"
           onPress={() => navigation.navigate('BasketballScreen')}
-          color="#A9A9A9" // Cor cinza para o botão
+          color="#000" // Cor cinza para o botão
+          backgroundColor="#fff"
         />
       </View>
     </View>
@@ -67,6 +68,9 @@ const AppScreen = () => {
   const [error, setError] = useState(null);
   const [selectedRodada, setSelectedRodada] = useState(null);
   let rodadasCache = null;
+
+  const API_URL = 'https://api.api-futebol.com.br/v1/campeonatos/10/rodadas/';
+  const API_KEY = 'live_5fe3246969ef434c65847a2e6109cf';
 
   const fetchRodadas = async () => {
     if (rodadasCache) {
@@ -164,7 +168,6 @@ const AppScreen = () => {
     </View>
   );
 };
-
 // Terceira Tela (API de Basquete)
 const BasketballScreen = () => {
   const [times, setTimes] = useState([]);
@@ -184,7 +187,7 @@ const BasketballScreen = () => {
         setLoading(false);
       }
     };
-  
+
     fetchData();
   }, []);
 
@@ -255,7 +258,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     padding: 20,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#fff',
   },
   title: {
     fontSize: 24,
