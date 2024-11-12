@@ -4,34 +4,10 @@ import { Picker } from '@react-native-picker/picker';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
+import { BasketballScreen } from './connections/Basquete.js';
 
-// Função para buscar dados de basquete
-export const fetchBasquete = async () => {
-  const API_URL = 'https://basketball-highlights-api.p.rapidapi.com/teams?limit=10';
-  try {
-    const response = await fetch(API_URL, {
-      method: 'GET',
-      headers: {
-        "x-rapidapi-key": "48fea6a2d7mshd7f100fda965afbp1941f3jsn834a5a8cc938",
-        "x-rapidapi-host": "basketball-highlights-api.p.rapidapi.com"
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Erro ao buscar os dados: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Erro:', error);
-    throw error;
-  }
-};
 
 const Stack = createStackNavigator();
-
-
 
 // Primeira Tela (Tela com fundo com imagem)
 const HomeScreen = ({ navigation }) => {
@@ -43,7 +19,7 @@ const HomeScreen = ({ navigation }) => {
         <Button
           title="API Futebol"
           onPress={() => navigation.navigate('AppScreen')}
-          color="#000" // Cor cinza para o botão
+          color="#000" 
           backgroundColor="#fff"
         />
       </View>
@@ -51,7 +27,7 @@ const HomeScreen = ({ navigation }) => {
         <Button
           title="API Basketball"
           onPress={() => navigation.navigate('BasketballScreen')}
-          color="#000" // Cor cinza para o botão
+          color="#000" 
           backgroundColor="#fff"
         />
       </View>
@@ -168,63 +144,7 @@ const AppScreen = () => {
     </View>
   );
 };
-// Terceira Tela (API de Basquete)
-const BasketballScreen = () => {
-  const [times, setTimes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchBasquete();
-        const filteredTeams = data.data.filter(team => team.name !== 'Panevezys W' && team.name !== 'Perth');
-        setTimes(filteredTeams);
-        setLoading(false);
-      } catch (error) {
-        console.error("Erro ao buscar dados da API de basquete:", error);
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return (
-      <View style={styles.centered}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
-  }
-
-  if (error) {
-    return (
-      <View style={styles.centered}>
-        <Text>Erro: {error}</Text>
-      </View>
-    );
-  }
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Times de Basquete</Text>
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        {times.map((time) => (
-          <View key={time.id} style={styles.teamCard}>
-            <Image
-              source={{ uri: time.logo }}
-              style={styles.logo}
-              accessibilityLabel={`Logo do time ${time.name}`}
-            />
-            <Text style={styles.teamName}>{time.name}</Text>
-          </View>
-        ))}
-      </ScrollView>
-    </View>
-  );
-};
 
 export default function App() {
   return (
