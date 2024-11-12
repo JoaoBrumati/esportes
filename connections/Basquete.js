@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet, ActivityIndicator, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Image, ScrollView } from 'react-native';
 
 
 // Função para buscar dados de basquete
@@ -89,21 +89,7 @@ export const BasketballScreen = () => {
 
 
 const styles = StyleSheet.create({
-  homeContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  backgroundImage: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-  },
+
   container: {
     flex: 1,
     justifyContent: 'flex-start',
@@ -116,29 +102,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 20,
   },
-  buttonContainer: {
-    marginVertical: 10,
-    width: '80%',
-  },
+ 
   scrollView: {
     flexGrow: 1,
-  },
-  matchContainer: {
-    padding: 15,
-    marginVertical: 5,
-    borderRadius: 10,
-    backgroundColor: '#ffffff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 3,
-  },
-  teamContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 10,
   },
   logo: {
     width: 50,
@@ -149,11 +115,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
   },
-  picker: {
-    height: 50,
-    width: '100%',
-    marginVertical: 20,
-  },
+
   centered: {
     flex: 1,
     justifyContent: 'center',
