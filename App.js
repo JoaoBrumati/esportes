@@ -35,7 +35,7 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-// Segunda Tela (Tela do App para a API de Futebol)
+// Tela do App para a API de Futebol
 const AppScreen = () => {
   const [rodadas, setRodadas] = useState([]);
   const [matches, setMatches] = useState([]);
@@ -71,6 +71,7 @@ const AppScreen = () => {
     }
   };
 
+  //botão pesquisar
   const fetchMatches = async (rodada) => {
     setLoadingMatches(true);
     try {
@@ -89,10 +90,13 @@ const AppScreen = () => {
     }
   };
 
+
+  //hook react - a cada renderização ou alteração no componente ele chama a função
   useEffect(() => {
     fetchRodadas();
   }, []);
 
+  //função do botão pesquisar
   const handleSearch = () => {
     if (selectedRodada) {
       fetchMatches(selectedRodada);
@@ -100,8 +104,10 @@ const AppScreen = () => {
   };
 
   return (
+    //container
     <View style={styles.container}>
       <Text style={styles.title}>Selecione uma rodada:</Text>
+      {/* select */}
       <Picker
         selectedValue={selectedRodada}
         style={styles.picker}
@@ -113,6 +119,7 @@ const AppScreen = () => {
         ))}
       </Picker>
 
+        {/* resultados retornados */}
       <ScrollView contentContainerStyle={styles.scrollView}>
         {loadingRodadas || loadingMatches ? (
           <ActivityIndicator size="large" color="#0000ff" />

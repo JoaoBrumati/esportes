@@ -26,7 +26,7 @@ export const fetchBasquete = async () => {
     }
   };
 
-  // Terceira Tela (API de Basquete)
+  // Tela basquete
 export const BasketballScreen = () => {
   const [times, setTimes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -66,14 +66,17 @@ export const BasketballScreen = () => {
   }
 
   return (
+    //container
     <View style={styles.container}>
       <Text style={styles.title}>Times de Basquete</Text>
       <ScrollView contentContainerStyle={styles.scrollView}>
+        {/* map vai percorrer a list de times que retorna da API */}
         {times.map((time) => (
           <View key={time.id} style={styles.teamCard}>
             <Image
               source={{ uri: time.logo }}
               style={styles.logo}
+              // alt
               accessibilityLabel={`Logo do time ${time.name}`}
             />
             <Text style={styles.teamName}>{time.name}</Text>
